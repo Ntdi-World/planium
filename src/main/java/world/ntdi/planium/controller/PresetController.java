@@ -1,42 +1,35 @@
 package world.ntdi.planium.controller;
 
-import org.atmosphere.config.service.Get;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import world.ntdi.planium.manger.cache.Cache;
+import world.ntdi.planium.manger.image.Image;
+import world.ntdi.planium.manger.image.ImageSerialization;
+import world.ntdi.planium.manger.image.images.Stubby;
+import world.ntdi.planium.model.ImageLocation;
 
-import javax.imageio.ImageIO;
-import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 
 @RestController
 @RequestMapping("/api/v1/preset/")
 public class PresetController {
+    private Cache<String, Image> cache = new Cache<>(100);
 
-    @GetMapping(path = "/long", produces = MediaType.IMAGE_PNG_VALUE)
-    public ResponseEntity<BufferedImage> createLong() {
-        try {
-            return ResponseEntity.ok(ImageIO.read(new File("src/main/resources/static/Ntdi_world_1200px-01.png")));
-        } catch (IOException e) {
-            e.printStackTrace();
+    @GetMapping(path = "/stubby")
+    public ImageLocation createStubby() throws IOException {
+        String text = "Hello World";
+        int fontSize = 75;
+        int x = 25;
+        int y = 220;
+        String serialized = ImageSerialization.serializeName(fontSize, x, y, text);
+
+        if (cache.get(serialized) != null) {
+            return new ImageLocation("localhost:8080/cache/" + cache.get(serialized).getFile().getName());
         }
 
-//        int fontSize = 100 - (int) (message.length() * 1.5);
-//
-//        Font font = new Font("Hubot-Sans", Font.BOLD, fontSize);
-//        Graphics g = image.getGraphics();
-//
-//        FontMetrics metrics = g.getFontMetrics(font);
-//
-//        int positionY = (image.getHeight() - metrics.getHeight()) / 2 + metrics.getAscent();
-//
-//        g.setFont(font);
-//        g.setColor(Color.WHITE);
-//        g.drawString(message, 50, positionY);
-//
-//        return image;
-        return null;
+        Stubby image = new Stubby("Hello World", 75, 25, 220);
+        cache.put(image.getSerializeName(), image);
+        return new ImageLocation("localhost:8080/cache/" + image.getFile().getName());
     }
 }

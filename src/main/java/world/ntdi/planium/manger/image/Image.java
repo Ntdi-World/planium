@@ -1,6 +1,5 @@
 package world.ntdi.planium.manger.image;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 import javax.imageio.ImageIO;
@@ -21,7 +20,11 @@ public abstract class Image {
     @Getter
     private final int y;
     @Getter
-    private BufferedImage bufferedImage;
+    private final BufferedImage bufferedImage;
+    @Getter
+    private final String serializeName;
+    @Getter
+    private final File file;
 
     public Image(String path, String text, int fontSize, int x, int y) throws IOException {
         this.path = path;
@@ -37,5 +40,10 @@ public abstract class Image {
         g.setFont(font);
         g.setColor(Color.WHITE);
         g.drawString(getText(), getX(), getY());
+
+        this.serializeName = ImageSerialization.serializeName(getFontSize(), getX(), getY(), text);
+        this.file = new File("src/main/resources/static/cache/" + serializeName);
+
+        ImageIO.write(bufferedImage, "png", getFile());
     }
 }

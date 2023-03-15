@@ -19,7 +19,7 @@ import java.lang.reflect.InvocationTargetException;
 @RestController
 @RequestMapping("/api/v1/preset/")
 public class PresetController {
-    private Cache<String, Image> cache = new Cache<>(100);
+    private Cache<String, Image> cache = new Cache<>(2);
 
     @GetMapping(path = "/stubby")
     public ImageLocation createStubby(@RequestParam String text, @RequestParam(required = false) Integer fontSize, @RequestParam(required = false) Integer x, @RequestParam(required = false) Integer y) throws IOException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {

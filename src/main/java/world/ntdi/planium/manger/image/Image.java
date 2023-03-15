@@ -51,4 +51,21 @@ public class Image {
 
         ImageIO.write(bufferedImage, "png", getFile());
     }
+
+    public enum ImageTypes {
+        STUBBY("src/main/resources/static/base/Ntdi_World_600px-01.png"),
+        LONGER("src/main/resources/static/base/Ntdi_World_1200px-01.png");
+
+        @Getter
+        private final String path;
+
+        ImageTypes(String path) {
+            this.path = path;
+        }
+
+        @Override
+        public String toString() {
+            return getPath();
+        }
+    }
 }

@@ -7,8 +7,6 @@ import org.springframework.web.bind.annotation.RestController;
 import world.ntdi.planium.manger.cache.Cache;
 import world.ntdi.planium.manger.image.Image;
 import world.ntdi.planium.manger.image.ImageSerialization;
-import world.ntdi.planium.manger.image.images.Longer;
-import world.ntdi.planium.manger.image.images.Stubby;
 import world.ntdi.planium.model.ImageLocation;
 
 import javax.imageio.ImageIO;
@@ -23,12 +21,12 @@ public class PresetController {
 
     @GetMapping(path = "/stubby")
     public ImageLocation createStubby(@RequestParam String text, @RequestParam(required = false) Integer fontSize, @RequestParam(required = false) Integer x, @RequestParam(required = false) Integer y) throws IOException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
-        return checkImageLocation(text, fontSize, x, y, Stubby.getFilePath());
+        return checkImageLocation(text, fontSize, x, y, Image.ImageTypes.STUBBY.getPath());
     }
 
     @GetMapping(path = "/long")
     public ImageLocation createLong(@RequestParam String text, @RequestParam(required = false) Integer fontSize, @RequestParam(required = false) Integer x, @RequestParam(required = false) Integer y) throws IOException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
-        return checkImageLocation(text, fontSize, x, y, Longer.getFilePath());
+        return checkImageLocation(text, fontSize, x, y, Image.ImageTypes.LONGER.getPath());
     }
 
 

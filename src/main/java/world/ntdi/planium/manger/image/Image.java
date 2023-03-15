@@ -9,7 +9,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Objects;
 
-public abstract class Image {
+public class Image {
     @Getter
     private final String path;
     @Getter

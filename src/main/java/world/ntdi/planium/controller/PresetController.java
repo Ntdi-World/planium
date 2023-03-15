@@ -10,6 +10,7 @@ import world.ntdi.planium.manger.image.ImageSerialization;
 import world.ntdi.planium.model.ImageLocation;
 
 import javax.imageio.ImageIO;
+import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 
@@ -20,17 +21,17 @@ public class PresetController {
 
     @GetMapping(path = "/stubby")
     public ImageLocation createStubby(@RequestParam String text, @RequestParam(required = false) Integer fontSize, @RequestParam(required = false) Integer x, @RequestParam(required = false) Integer y) throws IOException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
-        return checkImageLocation(text, fontSize, x, y, Image.ImageTypes.STUBBY.getPath());
+        return checkImageLocation(text, fontSize, x, y, "base/Ntdi_world_600px-01.png");
     }
 
     @GetMapping(path = "/long")
     public ImageLocation createLong(@RequestParam String text, @RequestParam(required = false) Integer fontSize, @RequestParam(required = false) Integer x, @RequestParam(required = false) Integer y) throws IOException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
-        return checkImageLocation(text, fontSize, x, y, "e");
+        return checkImageLocation(text, fontSize, x, y, "base/Ntdi_world_1200px-01.png");
     }
 
 
     private ImageLocation checkImageLocation(String text, Integer fontSize, Integer x, Integer y, String bufferedIO) throws IOException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
-        String serialized = ImageSerialization.serializeName(fontSize, x, y, text, ImageIO.read(getClass().getResourceAsStream("static/base/Ntdi_world_1200px-01.png")));
+        String serialized = ImageSerialization.serializeName(fontSize, x, y, text, ImageIO.read(new File(bufferedIO)));
 
         if (cache.get(serialized) != null) {
             return new ImageLocation("localhost:8080/cache/" + cache.get(serialized).getFile().getName());

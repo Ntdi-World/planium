@@ -13,7 +13,7 @@ public class PlaniumApplication {
 		SpringApplication.run(PlaniumApplication.class, args);
 
 		Runtime.getRuntime().addShutdownHook(new Thread(() -> {
-			File dir = new File("src/main/resources/static/cache");
+			File dir = new File("image/cache");
 			File[] directoryListing = dir.listFiles();
 			if (directoryListing != null) {
 				for (File child : directoryListing) {

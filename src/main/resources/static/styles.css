@@ -1,0 +1,53 @@
+@import url('https://fonts.cdnfonts.com/css/hubot-sans');
+* {
+    font-family: 'Hubot-Sans', sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #000000;
+}
+
+body {
+    background-color: #e7e7e7;
+    width: 87%;
+    margin: 0 auto;
+}
+
+h1 {
+    font-size: 4rem;
+    margin-top: 1rem;
+}
+
+i {
+    font-weight: 500;
+    font-size: 1.5rem;
+}
+
+p {
+    margin: 1rem 0;
+}
+
+ul {
+    padding: 0 2rem;
+}
+
+table {
+    border: 2px #3b3b3b solid;
+}
+
+th {
+    border-right: 2px #3b3b3b solid;
+    border-bottom: 2px #3b3b3b solid;
+    padding: 1rem 1rem;
+}
+
+@media screen and (max-width: 560px) {
+    th {
+        padding: 0;
+        font-size: 1rem;
+        font-weight: 400;
+    }
+
+    body {
+        width: 97%;
+    }
+}

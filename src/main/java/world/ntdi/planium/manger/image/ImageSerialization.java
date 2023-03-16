@@ -4,6 +4,7 @@ import lombok.experimental.UtilityClass;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.util.Base64;
 
 @UtilityClass
 public class ImageSerialization {
@@ -25,6 +26,7 @@ public class ImageSerialization {
 
 
         text = text.trim().replaceAll(" ", "_");
-        return "size-" + fontSize + "-x-" + x + "-y-" + y + "-text-" + text + ".png";
+        String name = "size-" + fontSize + "-x-" + x + "-y-" + y + "-text-" + text + ".png";
+        return Base64.getEncoder().encodeToString(name.getBytes());
     }
 }

@@ -59,7 +59,9 @@ public class Image {
         LONG(100, 2F),
         GIANT(200, 2F);
 
+        @Getter
         private final int fontMax;
+        @Getter
         private final float fontMod;
 
         Type(int fontMax, float fontMod) {

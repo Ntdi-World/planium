@@ -45,7 +45,6 @@ public class PresetController {
         } else {
             Image image = new Image(bufferedIO, text, type, fontSize, x, y);
             cache.put(image.getSerializeName(), image);
-
             path = image.getFile().getName();
         }
 

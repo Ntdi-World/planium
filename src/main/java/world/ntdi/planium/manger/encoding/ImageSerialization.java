@@ -11,7 +11,7 @@ import java.util.Base64;
 public class ImageSerialization {
     public String serializeName(Image.Type type, Integer fontSize, Integer x, Integer y, String text, BufferedImage image) {
         if (fontSize == null) {
-            fontSize = 100 - (text.length() * 2);
+            fontSize = type.getFontMax() - (int) (text.length() * type.getFontMod());
         }
 
         Font font = new Font("Hubot-Sans", Font.BOLD, fontSize);

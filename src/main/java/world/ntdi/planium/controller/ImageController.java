@@ -22,10 +22,7 @@ public class ImageController {
     @ResponseBody
     public HttpEntity<byte[]> getArticleImage(@PathVariable String id) throws IOException {
 
-        BufferedImage bImage = null;
-        try {
-            bImage = ImageIO.read(new File("cache/" + id));
-        } catch (IOException ignored) {}
+        BufferedImage bImage = ImageIO.read(new File("cache/" + id));
         ByteArrayOutputStream bos = new ByteArrayOutputStream();
         ImageIO.write(bImage, "png", bos);
 

@@ -34,12 +34,12 @@ public class PresetController {
         String serialized = ImageSerialization.serializeName(fontSize, x, y, text, ImageIO.read(new File(bufferedIO)));
 
         if (cache.get(serialized) != null) {
-            return new ImageLocation("localhost:8080/api/v1/picture/" + cache.get(serialized).getFile().getName());
+            return new ImageLocation("planium.ntdi.world/api/v1/picture/" + cache.get(serialized).getFile().getName());
         }
 
         Image image = new Image(bufferedIO, text, fontSize, x, y);
 
         cache.put(image.getSerializeName(), image);
-        return new ImageLocation("localhost:8080/api/v1/picture/" + image.getFile().getName());
+        return new ImageLocation("planium.ntdi.world/api/v1/picture/" + image.getFile().getName());
     }
 }

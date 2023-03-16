@@ -18,7 +18,7 @@ import java.lang.reflect.InvocationTargetException;
 @RequestMapping("/api/v1/preset/")
 public class PresetController {
     private Cache<String, Image> cache = new Cache<>(100000);
-
+    private final String url = "https://planium.ntdi.world/api/v1/picture/";
     @GetMapping(path = "/stubby")
     public ImageLocation createStubby(@RequestParam String text, @RequestParam(required = false) Integer fontSize, @RequestParam(required = false) Integer x, @RequestParam(required = false) Integer y) throws IOException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
         return checkImageLocation(text, fontSize, x, y, "base/Ntdi_world_600px-01.png");
@@ -34,12 +34,12 @@ public class PresetController {
         String serialized = ImageSerialization.serializeName(fontSize, x, y, text, ImageIO.read(new File(bufferedIO)));
 
         if (cache.get(serialized) != null) {
-            return new ImageLocation("planium.ntdi.world/api/v1/picture/" + cache.get(serialized).getFile().getName());
+            return new ImageLocation(url + cache.get(serialized).getFile().getName());
         }
 
         Image image = new Image(bufferedIO, text, fontSize, x, y);
 
         cache.put(image.getSerializeName(), image);
-        return new ImageLocation("planium.ntdi.world/api/v1/picture/" + image.getFile().getName());
+        return new ImageLocation(url + image.getFile().getName());
     }
 }

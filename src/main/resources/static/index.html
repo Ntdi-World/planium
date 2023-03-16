@@ -10,6 +10,7 @@
 
     <!-- Primary Meta Tags -->
     <title>Planium - Ntdi World</title>
+    <meta name="theme-color" content="#e7e7e7" />
     <meta name="title" content="Planium - Ntdi World">
     <meta name="description" content="Planium is an open source API to add text onto images made fully in Java!">
 
@@ -43,7 +44,8 @@
     <ul>
         <li>Object Orientated</li>
         <li>Least-Frequently-Used Cache Invalidation</li>
-        <li>AWT image buffering</li>
+        <li>AWT Image Buffering</li>
+        <li>Base58Check Encryption</li>
     </ul>
 
     <p>
@@ -71,5 +73,35 @@
             <th>fontSize - The size of the font <br> x - The x coordinate position <br> y - The y coordinate position</th>
         </tr>
     </table>
+
+    <h3>Expected Output</h3>
+    <p>
+        Planium will return a response containing the text, <em class="code">fontSize</em>, <em class="code">x</em>, and <em class="code">y</em> properties
+        you passed in, but will also give you a <em class="code">path</em> variable, which correlates to where the image is stored on Planium. Don't
+        worry if the URL looks ugly, Planium uses Base58check to serialize the urls, this is done so you can put special characters such as %&^# in
+        your text labels. Though I would stick to a UTF-8 Charset.
+    </p>
+    <p>
+        Note: You do not need to call the API with every value to receive it back, Planium is smart and will automatically format
+        each variable you don't give it, it just returns the variables back to you in case you wanted to see it or use it.
+        <br><br>
+        Another Note: The image path returned modifies the headers of the HTML object, meaning it will still be treated like a IMAGE/PNG, just without
+        the <em class="code">.png</em> extension at the end.
+    </p>
+
+    <h3>Example Response</h3>
+    <div class="json-block">
+        <p class="json-code">
+            {
+            <div class="indent">
+                "path": "https://planium.ntdi.world/api/v1/picture/eXSJLiUiU8GeJq4gKLAXWMsRtd4usboCJTCr5yBnCHWF1ati2TnJb2aVwzXq",<br>
+                "fontSize": 76,<br>
+                "x": 50,<br>
+                "y": 246,<br>
+                "text": "Hello World!"<br>
+            </div>
+            }
+        </p>
+    </div>
 </body>
 </html>

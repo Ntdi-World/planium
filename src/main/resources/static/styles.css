@@ -32,6 +32,7 @@ ul {
 
 table {
     border: 2px #3b3b3b solid;
+    margin: 1rem 0;
 }
 
 th {
@@ -39,6 +40,25 @@ th {
     border-bottom: 2px #3b3b3b solid;
     padding: 1rem 1rem;
 }
+
+.code {
+    background-color: #e3dbdb;
+    border-radius: 80px;
+    padding: 3px 6px;
+}
+
+.json-block {
+    background-color: #e3dbdb;
+    border-radius: 20px;
+    padding: 1rem 2rem;
+    margin: 1rem 0;
+}
+
+.indent {
+    margin-left: 1rem;
+    margin-top: -1rem;
+}
+
 
 @media screen and (max-width: 560px) {
     th {

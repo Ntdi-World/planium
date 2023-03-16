@@ -1,6 +1,7 @@
 package world.ntdi.planium.manger.encoding;
 
 import lombok.experimental.UtilityClass;
+import world.ntdi.planium.manger.image.Image;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -8,7 +9,7 @@ import java.util.Base64;
 
 @UtilityClass
 public class ImageSerialization {
-    public String serializeName(Integer fontSize, Integer x, Integer y, String text, BufferedImage image) {
+    public String serializeName(Image.Type type, Integer fontSize, Integer x, Integer y, String text, BufferedImage image) {
         if (fontSize == null) {
             fontSize = 100 - (text.length() * 2);
         }
@@ -26,7 +27,7 @@ public class ImageSerialization {
 
 
         text = text.trim().replaceAll(" ", "_");
-        String name = "size-" + fontSize + "-x-" + x + "-y-" + y + "-text-" + text + ".png";
+        String name = "size-" + fontSize + "-x-" + x + "-y-" + y + "-text-" + text + "-type-" + type + ".png";
         return Base58Check.bytesToBase58(name.getBytes());
     }
 }

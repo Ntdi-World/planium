@@ -28,7 +28,7 @@ public class Image {
     @Getter
     private final File file;
 
-    public Image(String path, String text, Integer fontSize, Integer x, Integer y) throws IOException {
+    public Image(String path, String text, Type type, Integer fontSize, Integer x, Integer y) throws IOException {
         this.path = path;
         this.text = text;
 
@@ -52,5 +52,10 @@ public class Image {
         this.file.mkdirs();
 
         ImageIO.write(bufferedImage, "png", getFile());
+    }
+
+    public enum Type {
+        STUBBY,
+        LONG
     }
 }

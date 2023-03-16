@@ -21,24 +21,24 @@ public class PresetController {
     private final String url = "https://planium.ntdi.world/api/v1/picture/";
     @GetMapping(path = "/stubby")
     public ImageLocation createStubby(@RequestParam String text, @RequestParam(required = false) Integer fontSize, @RequestParam(required = false) Integer x, @RequestParam(required = false) Integer y) throws IOException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
-        return checkImageLocation(text, fontSize, x, y, "base/Ntdi_world_600px-01.png");
+        return checkImageLocation(text, Image.Type.STUBBY, fontSize, x, y, "base/Ntdi_world_600px-01.png");
     }
 
     @GetMapping(path = "/long")
     public ImageLocation createLong(@RequestParam String text, @RequestParam(required = false) Integer fontSize, @RequestParam(required = false) Integer x, @RequestParam(required = false) Integer y) throws IOException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
-        return checkImageLocation(text, fontSize, x, y, "base/Ntdi_world_1200px-01.png");
+        return checkImageLocation(text, Image.Type.LONG, fontSize, x, y, "base/Ntdi_world_1200px-01.png");
     }
 
 
-    private ImageLocation checkImageLocation(String text, Integer fontSize, Integer x, Integer y, String bufferedIO) throws IOException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
-        String serialized = ImageSerialization.serializeName(fontSize, x, y, text, ImageIO.read(new File(bufferedIO)));
+    private ImageLocation checkImageLocation(String text, Image.Type type, Integer fontSize, Integer x, Integer y, String bufferedIO) throws IOException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
+        String serialized = ImageSerialization.serializeName(type, fontSize, x, y, text, ImageIO.read(new File(bufferedIO)));
 
         String path;
 
         if (cache.get(serialized) != null) {
             path = cache.get(serialized).getFile().getName();
         } else {
-            Image image = new Image(bufferedIO, text, fontSize, x, y);
+            Image image = new Image(bufferedIO, text, type, fontSize, x, y);
             cache.put(image.getSerializeName(), image);
 
             path = image.getFile().getName();

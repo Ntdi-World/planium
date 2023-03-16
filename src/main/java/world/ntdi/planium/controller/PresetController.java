@@ -21,17 +21,22 @@ public class PresetController {
     private final String url = "https://planium.ntdi.world/api/v1/picture/";
     @GetMapping(path = "/stubby")
     public ImageLocation createStubby(@RequestParam String text, @RequestParam(required = false) Integer fontSize, @RequestParam(required = false) Integer x, @RequestParam(required = false) Integer y) throws IOException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
-        return checkImageLocation(text, Image.Type.STUBBY, fontSize, x, y, "base/Ntdi_world_600px-01.png");
+        return checkImageLocation(text, Image.Type.STUBBY, fontSize, x, y, "base/stubby.png");
     }
 
     @GetMapping(path = "/long")
     public ImageLocation createLong(@RequestParam String text, @RequestParam(required = false) Integer fontSize, @RequestParam(required = false) Integer x, @RequestParam(required = false) Integer y) throws IOException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
-        return checkImageLocation(text, Image.Type.LONG, fontSize, x, y, "base/Ntdi_world_1200px-01.png");
+        return checkImageLocation(text, Image.Type.LONG, fontSize, x, y, "base/long.png");
+    }
+
+    @GetMapping(path = "/github")
+    public ImageLocation createGithub(@RequestParam String text, @RequestParam(required = false) Integer fontSize, @RequestParam(required = false) Integer x, @RequestParam(required = false) Integer y) throws IOException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
+        return checkImageLocation(text, Image.Type.GITHUB, fontSize, x, y, "base/github.png");
     }
 
     @GetMapping(path = "/giant")
     public ImageLocation createGiant(@RequestParam String text, @RequestParam(required = false) Integer fontSize, @RequestParam(required = false) Integer x, @RequestParam(required = false) Integer y) throws IOException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
-        return checkImageLocation(text, Image.Type.GIANT, fontSize, x, y, "base/Ntdi_world_2400px-01.png");
+        return checkImageLocation(text, Image.Type.GIANT, fontSize, x, y, "base/giant.png");
     }
 
 

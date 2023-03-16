@@ -57,6 +57,7 @@ public class Image {
     public enum Type {
         STUBBY(100, 2.5F),
         LONG(100, 2F),
+        GITHUB(100, 2F),
         GIANT(200, 2F);
 
         @Getter

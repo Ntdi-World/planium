@@ -30,7 +30,7 @@ public class PresetController {
     }
 
 
-    private ImageLocation checkImageLocation(String text, Image.Type type, Integer fontSize, Integer x, Integer y, String bufferedIO) throws IOException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
+    private ImageLocation checkImageLocation(String text, Image.Type type, Integer fontSize, Integer x, Integer y, String bufferedIO) throws IOException {
         String serialized = ImageSerialization.serializeName(type, fontSize, x, y, text, ImageIO.read(new File(bufferedIO)));
 
         String path;

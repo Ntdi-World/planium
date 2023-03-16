@@ -47,7 +47,7 @@ public class Image {
         g.setColor(Color.WHITE);
         g.drawString(getText(), getX(), getY());
 
-        this.serializeName = ImageSerialization.serializeName(getFontSize(), getX(), getY(), text, getBufferedImage());
+        this.serializeName = ImageSerialization.serializeName(type, getFontSize(), getX(), getY(), text, getBufferedImage());
         this.file = new File("cache/" + serializeName);
         this.file.mkdirs();
 

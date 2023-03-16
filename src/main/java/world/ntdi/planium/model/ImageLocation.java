@@ -7,4 +7,8 @@ import lombok.Data;
 @Data
 public class ImageLocation {
     private final String path;
+    private final Integer fontSize;
+    private final Integer x;
+    private final Integer y;
+    private final String text;
 }

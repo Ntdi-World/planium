@@ -33,13 +33,17 @@ public class PresetController {
     private ImageLocation checkImageLocation(String text, Integer fontSize, Integer x, Integer y, String bufferedIO) throws IOException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
         String serialized = ImageSerialization.serializeName(fontSize, x, y, text, ImageIO.read(new File(bufferedIO)));
 
+        String path;
+
         if (cache.get(serialized) != null) {
-            return new ImageLocation(url + cache.get(serialized).getFile().getName());
+            path = cache.get(serialized).getFile().getName();
+        } else {
+            Image image = new Image(bufferedIO, text, fontSize, x, y);
+            cache.put(image.getSerializeName(), image);
+
+            path = url + image.getFile().getName();
         }
 
-        Image image = new Image(bufferedIO, text, fontSize, x, y);
-
-        cache.put(image.getSerializeName(), image);
-        return new ImageLocation(url + image.getFile().getName());
+        return new ImageLocation(path, fontSize, x, y, text);
     }
 }

@@ -71,3 +71,12 @@ th {
         width: 97%;
     }
 }
+
+@media screen and (max-width: 780px) {
+    .json-block {
+        display: none !important;
+    }
+    .hide-at-point {
+        display: none !important;
+    }
+}

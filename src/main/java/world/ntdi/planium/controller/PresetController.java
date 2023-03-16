@@ -44,6 +44,7 @@ public class PresetController {
             path = url + image.getFile().getName();
         }
 
-        return new ImageLocation(path, fontSize, x, y, text);
+        Image image = cache.get(serialized);
+        return new ImageLocation(path, image.getFontSize(), image.getX(), image.getY(), text);
     }
 }

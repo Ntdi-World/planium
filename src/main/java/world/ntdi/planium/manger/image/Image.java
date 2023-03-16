@@ -47,7 +47,7 @@ public class Image {
         g.drawString(getText(), getX(), getY());
 
         this.serializeName = ImageSerialization.serializeName(getFontSize(), getX(), getY(), text, getBufferedImage());
-        this.file = new File("src/main/resources/static/cache/" + serializeName);
+        this.file = new File("cache/" + serializeName);
         this.file.mkdirs();
 
         ImageIO.write(bufferedImage, "png", getFile());

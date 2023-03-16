@@ -41,10 +41,10 @@ public class PresetController {
             Image image = new Image(bufferedIO, text, fontSize, x, y);
             cache.put(image.getSerializeName(), image);
 
-            path = url + image.getFile().getName();
+            path = image.getFile().getName();
         }
 
         Image image = cache.get(serialized);
-        return new ImageLocation(path, image.getFontSize(), image.getX(), image.getY(), text);
+        return new ImageLocation(url + path, image.getFontSize(), image.getX(), image.getY(), text);
     }
 }

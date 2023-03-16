@@ -1,4 +1,4 @@
-package world.ntdi.planium.manger.image;
+package world.ntdi.planium.manger.encoding;
 
 import lombok.experimental.UtilityClass;
 
@@ -27,6 +27,6 @@ public class ImageSerialization {
 
         text = text.trim().replaceAll(" ", "_");
         String name = "size-" + fontSize + "-x-" + x + "-y-" + y + "-text-" + text + ".png";
-        return Base64.getEncoder().encodeToString(name.getBytes());
+        return Base58Check.bytesToBase58(name.getBytes());
     }
 }

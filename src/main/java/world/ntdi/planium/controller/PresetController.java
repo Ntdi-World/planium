@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import world.ntdi.planium.manger.cache.Cache;
 import world.ntdi.planium.manger.image.Image;
-import world.ntdi.planium.manger.image.ImageSerialization;
+import world.ntdi.planium.manger.encoding.ImageSerialization;
 import world.ntdi.planium.model.ImageLocation;
 
 import javax.imageio.ImageIO;

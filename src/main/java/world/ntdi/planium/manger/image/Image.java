@@ -1,6 +1,7 @@
 package world.ntdi.planium.manger.image;
 
 import lombok.Getter;
+import world.ntdi.planium.manger.encoding.ImageSerialization;
 
 import javax.imageio.ImageIO;
 import java.awt.*;

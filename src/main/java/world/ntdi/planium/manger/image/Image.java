@@ -32,7 +32,7 @@ public class Image {
         this.path = path;
         this.text = text;
 
-        this.fontSize = Objects.requireNonNullElseGet(fontSize, () -> 100 - (text.length() * 2));
+        this.fontSize = Objects.requireNonNullElseGet(fontSize, () -> type.fontMax - (int) (text.length() * type.fontMod));
 
         this.bufferedImage = ImageIO.read(new File(this.getPath()));
 
@@ -55,8 +55,16 @@ public class Image {
     }
 
     public enum Type {
-        STUBBY,
-        LONG,
-        GIANT
+        STUBBY(100, 2.5F),
+        LONG(100, 2F),
+        GIANT(200, 2F);
+
+        private final int fontMax;
+        private final float fontMod;
+
+        Type(int fontMax, float fontMod) {
+            this.fontMax = fontMax;
+            this.fontMod = fontMod;
+        }
     }
 }

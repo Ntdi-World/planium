@@ -56,6 +56,7 @@ public class Image {
 
     public enum Type {
         STUBBY,
-        LONG
+        LONG,
+        GIANT
     }
 }

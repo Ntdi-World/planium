@@ -29,6 +29,11 @@ public class PresetController {
         return checkImageLocation(text, Image.Type.LONG, fontSize, x, y, "base/Ntdi_world_1200px-01.png");
     }
 
+    @GetMapping(path = "/giant")
+    public ImageLocation createGiant(@RequestParam String text, @RequestParam(required = false) Integer fontSize, @RequestParam(required = false) Integer x, @RequestParam(required = false) Integer y) throws IOException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
+        return checkImageLocation(text, Image.Type.GIANT, fontSize, x, y, "base/Ntdi_world_2400px-01.png");
+    }
+
 
     private ImageLocation checkImageLocation(String text, Image.Type type, Integer fontSize, Integer x, Integer y, String bufferedIO) throws IOException {
         String serialized = ImageSerialization.serializeName(type, fontSize, x, y, text, ImageIO.read(new File(bufferedIO)));

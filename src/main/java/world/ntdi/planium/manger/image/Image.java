@@ -58,7 +58,8 @@ public class Image {
         STUBBY(100, 2.5F),
         LONG(100, 2F),
         GITHUB(125, 2F),
-        GIANT(200, 2F);
+        GIANT(200, 2F),
+        FOURK(400, 3F);
 
         @Getter
         private final int fontMax;

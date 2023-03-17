@@ -17,7 +17,7 @@ import java.lang.reflect.InvocationTargetException;
 @RestController
 @RequestMapping("/api/v1/preset/")
 public class PresetController {
-    private Cache<String, Image> cache = new Cache<>(100000);
+    private Cache<String, Image> cache = new Cache<>(50000);
     private final String url = "https://planium.ntdi.world/api/v1/picture/";
     @GetMapping(path = "/stubby")
     public ImageLocation createStubby(@RequestParam String text, @RequestParam(required = false) Integer fontSize, @RequestParam(required = false) Integer x, @RequestParam(required = false) Integer y) throws IOException  {
@@ -32,6 +32,11 @@ public class PresetController {
     @GetMapping(path = "/github")
     public ImageLocation createGithub(@RequestParam String text, @RequestParam(required = false) Integer fontSize, @RequestParam(required = false) Integer x, @RequestParam(required = false) Integer y) throws IOException  {
         return checkImageLocation(text, Image.Type.GITHUB, fontSize, x, y, "base/github.png");
+    }
+
+    @GetMapping(path = "/square")
+    public ImageLocation createSquare(@RequestParam String text, @RequestParam(required = false) Integer fontSize, @RequestParam(required = false) Integer x, @RequestParam(required = false) Integer y) throws IOException  {
+        return checkImageLocation(text, Image.Type.SQUARE, fontSize, x, y, "base/square.png");
     }
 
     @GetMapping(path = "/giant")

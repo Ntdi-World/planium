@@ -19,7 +19,7 @@ public class ImageSerialization {
         FontMetrics metrics = g.getFontMetrics(font);
 
         if (x == null) {
-            x = 50;
+            x = (type.isCenterX() ? (image.getWidth() - metrics.stringWidth(text)) / 2 : 50);
         }
         if (y == null) {
             y = (image.getHeight() - metrics.getHeight()) / 2 + metrics.getAscent();

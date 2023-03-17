@@ -40,7 +40,7 @@ public class Image {
         Graphics g = getBufferedImage().getGraphics();
         FontMetrics metrics = g.getFontMetrics(font);
 
-        this.x = Objects.requireNonNullElse(x, 50);
+        this.x = Objects.requireNonNullElse(x, (type.isCenterX() ? (getBufferedImage().getWidth() - metrics.stringWidth(text)) / 2 : 50));
         this.y = Objects.requireNonNullElseGet(y, () -> (bufferedImage.getHeight() - metrics.getHeight()) / 2 + metrics.getAscent());
 
         g.setFont(font);
@@ -55,20 +55,24 @@ public class Image {
     }
 
     public enum Type {
-        STUBBY(100, 2.5F),
-        LONG(100, 2F),
-        GITHUB(125, 2F),
-        GIANT(200, 2F),
-        FOURK(400, 3F);
+        STUBBY(100, 2.5F, false),
+        LONG(100, 2F, false),
+        GITHUB(125, 2F, false),
+        SQUARE(325, 5F, true),
+        GIANT(200, 2F, false),
+        FOURK(400, 3F, false);
 
         @Getter
         private final int fontMax;
         @Getter
         private final float fontMod;
+        @Getter
+        private final boolean centerX;
 
-        Type(int fontMax, float fontMod) {
+        Type(int fontMax, float fontMod, boolean centerX) {
             this.fontMax = fontMax;
             this.fontMod = fontMod;
+            this.centerX = centerX;
         }
     }
 }

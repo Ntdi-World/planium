@@ -37,7 +37,7 @@
         Planium is an API to add text onto an image. This API is meant for you to use as
         it comes with lots of features. Images are cached, so don't worry about spamming
         the API. Planium is hosted on an Oracle Cloud (OCI) server with ARM64 based processing.
-        The current cache limit is 100,000 unique photos, if there becomes a point where that is
+        The current cache limit is 50,000 unique photos, if there becomes a point where that is
         too little, then I will upgrade the server, but for now, this should do.
     </p>
 
@@ -81,6 +81,13 @@
             <th>text - The actual text to overlay</th>
             <th>fontSize - The size of the font <br> x - The x coordinate position <br> y - The y coordinate position</th>
             <th>1280x640</th>
+        </tr>
+        <tr>
+            <th>GET</th>
+            <th>/api/v1/preset/square</th>
+            <th>text - The actual text to overlay</th>
+            <th>fontSize - The size of the font <br> x - The x coordinate position <br> y - The y coordinate position</th>
+            <th>1280x1280</th>
         </tr>
         <tr>
             <th>GET</th>

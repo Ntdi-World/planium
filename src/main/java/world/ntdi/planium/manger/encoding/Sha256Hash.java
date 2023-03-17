@@ -54,25 +54,6 @@ public final class Sha256Hash implements Comparable<Sha256Hash> {
 		hash = b.clone();
 	}
 	
-	
-	/**
-	 * Constructs a SHA-256 hash object from the specified hexadecimal string.
-	 * The string must be 64 characters long and entirely made up of hexadecimal digits.
-	 * All 2<sup>256</sup> possible values are valid. Not constant-time.
-	 * @throws IllegalArgumentException if the string is not of length 64 or entirely hexadecimal digits
-	 * @throws NullPointerException if the string is {@code null}
-	 */
-	public Sha256Hash(String s) {
-		Objects.requireNonNull(s);
-		if (s.length() != HASH_LENGTH * 2 || !s.matches("[0-9a-fA-F]*"))
-			throw new IllegalArgumentException("Invalid hash string");
-		hash = new byte[HASH_LENGTH];
-		for (int i = 0; i < hash.length; i++)
-			hash[hash.length - 1 - i] = (byte)Integer.parseInt(s.substring(i * 2, (i + 1) * 2), 16);
-	}
-	
-	
-	
 	/*---- Methods ----*/
 	
 	/**

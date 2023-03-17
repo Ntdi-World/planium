@@ -15,6 +15,7 @@ import java.util.Objects;
 
 /**
  * Computes the SHA-256 hash of an array of bytes. Not instantiable.
+ * Modified by Ntdi
  */
 public final class Sha256 {
 	
@@ -44,38 +45,7 @@ public final class Sha256 {
 	public static Sha256Hash getDoubleHash(byte[] msg) {
 		return getHash(getHash(msg).toBytes());
 	}
-	
-	
-	/**
-	 * Computes and returns the HMAC-SHA-256 of the specified binary key and binary message.
-	 * @param key the key for the message authentication code
-	 * @param msg the message for the message authentication code
-	 * @return an object representing the HMAC-SHA-256 of the key and message
-	 * @throws NullPointerException if the key or message is {@code null}
-	 */
-	public static Sha256Hash getHmac(byte[] key, byte[] msg) {
-		Objects.requireNonNull(key);
-		Objects.requireNonNull(msg);
-		
-		// Preprocess key, creating a new byte array
-		key = Arrays.copyOf(key.length <= BLOCK_LEN ? key : getHash(key).toBytes(), BLOCK_LEN);
-		
-		// Compute inner hash
-		for (int i = 0; i < key.length; i++)
-			key[i] ^= 0x36;
-		int[] state = INITIAL_STATE.clone();
-		compress(state, key, key.length);
-		Sha256Hash innerHash = getHash(msg, state, key.length);
-		
-		// Compute outer hash
-		for (int i = 0; i < key.length; i++)
-			key[i] ^= 0x36 ^ 0x5C;
-		state = INITIAL_STATE.clone();
-		compress(state, key, key.length);
-		return getHash(innerHash.toBytes(), state, key.length);
-	}
-	
-	
+
 	
 	/*---- Private functions ----*/
 	
